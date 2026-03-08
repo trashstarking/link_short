@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">ShortLinker</div>
+        <div class="auth-buttons">
+            <a href="/login"><button class="btn-text">Log in</button></a>
+            <a href="/login"><button class="btn-primary-small">Sign up Free</button></a>
+</div>
+    </nav>
+
+    <div class="hero-section">
+        <h1 class="headline">Build stronger digital connections</h1>
+        <p class="subheadline">URL Shortener for your brand.</p>
+
+        <div class="shortener-box">
+            <h2>Shorten a long link</h2>
+            <div class="input-group">
+                <input type="text" id="originalUrl" placeholder="Paste your long link here (e.g. https://super-long-site.com/...)">
+                <button id="shortenBtn" onclick="shortenUrl()">Get your link for free →</button>
+            </div>
+            
+            <div id="resultArea" class="result-area hidden">
+                <p>Your short link:</p>
+                <div class="link-display">
+                    <a id="shortLink" href="#" target="_blank">...</a>
+                    <button onclick="copyLink()" class="copy-btn">Copy</button>
+                </div>
+            </div>
+            <p id="errorMsg" class="error hidden"></p>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

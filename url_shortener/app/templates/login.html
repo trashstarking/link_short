@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - ShortLinker</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="auth-body">
+    <div class="auth-container">
+        <h2 id="formTitle">Log In</h2>
+        
+        <!-- форма -->
+        <div class="input-group">
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button id="authBtn" onclick="handleAuth()">Log In</button>
+        </div>
+
+        <p id="errorMsg" class="error hidden"></p>
+
+        <p class="switch-auth">
+            <span id="switchText">Don't have an account?</span> 
+            <a href="#" onclick="toggleAuthMode()" id="switchBtn">Sign Up</a>
+        </p>
+        
+        <br>
+        <a href="/" style="color: #aeb4c3;">← Back to Home</a>
+    </div>
+
+    <script src="/static/dashboard.js"></script>
+</body>
+</html>

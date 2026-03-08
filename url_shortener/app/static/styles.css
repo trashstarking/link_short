@@ -1,0 +1,279 @@
+body {
+    margin: 0;
+    font-family: 'Proxima Nova', Arial, sans-serif;
+    background-color: #0b1736;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 24px;
+    color: #ee6123;
+}
+
+.btn-primary-small {
+    background-color: #2a5bd7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: white;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.hero-section {
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 100px;
+}
+
+.headline {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.subheadline {
+    font-size: 20px;
+    color: #aeb4c3;
+    margin-bottom: 50px;
+}
+
+/* белая карточка по центру */
+.shortener-box {
+    background-color: white;
+    color: #333;
+    width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.shortener-box h2 {
+    margin-top: 0;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="text"] {
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 95%;
+}
+
+button#shortenBtn {
+    background-color: #2a5bd7;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+button#shortenBtn:hover {
+    background-color: #1a45b0;
+}
+
+.hidden { display: none; }
+
+.result-area {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f4f6fa;
+    border-radius: 4px;
+}
+
+.link-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#shortLink {
+    color: #2a5bd7;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.copy-btn {
+    background: #0b1736;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+/* стиль лк и логина */
+
+.auth-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.auth-container {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    width: 350px;
+    text-align: center;
+    color: #333;
+}
+
+.switch-auth {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+.switch-auth a {
+    color: #2a5bd7;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* дэшборд */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.dashboard-create {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.links-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    color: #333;
+}
+
+.links-table th, .links-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.links-table th {
+    background-color: #f4f6fa;
+    color: #555;
+}
+
+.short-link {
+    color: #ee6123;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.orig-url {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    color: #888;
+}
+
+.status-active { color: green; font-weight: bold; }
+.status-expired { color: red; font-weight: bold; }
+
+.btn-delete {
+    background: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* обертка для ссылки и кнопки Copy */
+.short-link-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* сама ссылка */
+.short-link {
+    color: #2a5bd7;
+    font-weight: bold;
+    text-decoration: none;
+    background: #eef2ff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+.short-link:hover {
+    text-decoration: underline;
+}
+
+/* кнопка Copy */
+.btn-copy {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.2s;
+}
+
+.btn-copy:hover {
+    background-color: #d5d5d5;
+}
+
+/* лимитируем ширину оригинальной ссылки, чтобы таблица не разъезжалась */
+.orig-url {
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis; /* дбавляет троеточие ... если длинно */
+    white-space: nowrap;
+    display: block;
+    color: #888;
+}

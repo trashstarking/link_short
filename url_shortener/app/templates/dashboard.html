@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>My Dashboard - ShortLinker</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">ShortLinker <span style="font-size:12px; color:white;">Dashboard</span></div>
+        <div>
+            <span id="userDisplay" style="margin-right: 15px;"></span>
+            <button onclick="logout()" class="btn-text">Log Out</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>My Links</h1>
+        
+        <!-- форма создания новой ссылки прямо из ЛК -->
+        <div class="dashboard-create">
+            <input type="text" id="dashOriginalUrl" placeholder="Paste long URL">
+            <input type="text" id="dashAlias" placeholder="Custom Alias (optional)">
+            <button onclick="createLinkFromDash()" class="btn-primary-small">Create</button>
+        </div>
+
+        <!-- таблица ссылок -->
+        <table class="links-table">
+            <thead>
+                <tr>
+                    <th>Short Link</th>
+                    <th>Original URL</th>
+                    <th>Clicks</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="linksList">
+                <!-- сюда js вставит ссылки -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/static/dashboard.js"></script>
+</body>
+</html>
