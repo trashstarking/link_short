@@ -1,6 +1,5 @@
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
 import redis
 from .config import settings
 
@@ -9,8 +8,17 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
 
-# Redis connection
-redis_client = redis.from_url(settings.REDIS_URL, decode_responses=True)
+redis_client = None
+if settings.REDIS_URL:
+    try:
+        r = redis.from_url(settings.REDIS_URL, decode_responses=True)
+        if r.ping():
+            redis_client = r
+            print("Redis connected!")
+    except Exception as e:
+        print(f"Redis connection failed: {e}. Working without cache.")
+else:
+    print("No REDIS_URL found. Working without cache.")
 
 def get_db():
     db = SessionLocal()
