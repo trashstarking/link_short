@@ -217,17 +217,17 @@ def update_link(
 
 @app.get("/{short_code}")
 def redirect_to_original(short_code: str, db: Session = Depends(get_db)):
-    # redis проверка
-    cached_url = redis_client.get(short_code)
-    if cached_url:
-        db_link = db.query(models.Link).filter(models.Link.short_code == short_code).first()
-        if db_link:
-             db_link.click_count += 1
-             db_link.last_accessed_at = datetime.utcnow()
-             db.commit()
-        return RedirectResponse(url=cached_url)
 
-    # поиск в бд
+    if redis_client is not None:
+        cached_url = redis_client.get(short_code)
+        if cached_url:
+            db_link = db.query(models.Link).filter(models.Link.short_code == short_code).first()
+            if db_link:
+                 db_link.click_count += 1
+                 db_link.last_accessed_at = datetime.utcnow()
+                 db.commit()
+            return RedirectResponse(url=cached_url)
+            
     link = db.query(models.Link).filter(models.Link.short_code == short_code).first()
     
     if not link or not link.is_active:
@@ -242,7 +242,7 @@ def redirect_to_original(short_code: str, db: Session = Depends(get_db)):
     link.last_accessed_at = datetime.utcnow()
     db.commit()
 
-    if redis_client:
+    if redis_client is not None:
         redis_client.setex(short_code, timedelta(hours=24), link.original_url)
 
     return RedirectResponse(url=link.original_url)
