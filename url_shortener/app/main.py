@@ -41,7 +41,8 @@ async def clean_expired_links():
             
             for link in expired:
                 link.is_active = False
-                redis_client.delete(link.short_code)
+                if redis_client:
+                    redis_client.delete(link.short_code)
             
             if expired:
                 db.commit()
@@ -132,7 +133,9 @@ def shorten_link(
     db.commit()
     db.refresh(db_link)
     
-    redis_client.setex(short_code, timedelta(hours=24), str(link.original_url))
+    if redis_client:
+        redis_client.setex(short_code, timedelta(hours=24), str(link.original_url))
+        
     return db_link
 
 @app.get("/links/search")
@@ -179,7 +182,9 @@ def delete_link(
     if link.user_id != current_user.id:
         raise HTTPException(status_code=403, detail="Not authorized to delete this link")
     
-    redis_client.delete(short_code)
+    if redis_client:
+        redis_client.delete(short_code)
+    
     db.delete(link)
     db.commit()
     return {"detail": "Link deleted"}
@@ -202,8 +207,10 @@ def update_link(
     db.commit()
     db.refresh(link)
 
-    redis_client.delete(short_code)
-    redis_client.setex(short_code, timedelta(hours=24), link.original_url)
+    if redis_client:
+        redis_client.delete(short_code)
+        redis_client.setex(short_code, timedelta(hours=24), link.original_url)
+        
     return link
 
 # редирект
@@ -235,6 +242,7 @@ def redirect_to_original(short_code: str, db: Session = Depends(get_db)):
     link.last_accessed_at = datetime.utcnow()
     db.commit()
 
-    redis_client.setex(short_code, timedelta(hours=24), link.original_url)
+    if redis_client:
+        redis_client.setex(short_code, timedelta(hours=24), link.original_url)
 
     return RedirectResponse(url=link.original_url)
